@@ -32,10 +32,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @PostConstruct
     public void init(){
-        SignUpRequest sign=new SignUpRequest("Adel",
-                "Doe", "alina@gmail.com",
-                "MyPassword", Role.ADMIN);
-        System.out.println(signUp(sign));
+        User user=new User();
+        user.setFirstName("kandy");
+        user.setLastName("bek");
+        user.setPassword("kandyBek");
+        user.setEmail("kandy@gmail.com");
+        user.setRole(Role.ADMIN);
+        userRepo.save(user);
     }
 
         @Override
@@ -52,7 +55,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                     .email(request.email())
                     .password(passwordEncoder.encode(request.password()))
                     .createdAt(ZonedDateTime.now())
-                    .role(request.role())
+                    .role(Role.USER)
                     .build();
 
             userRepo.save(user);

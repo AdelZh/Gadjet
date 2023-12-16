@@ -12,8 +12,8 @@ public record SignUpRequest(
         String email,
 
         @PasswordValid
-        String password,
-        Role role
+        String password
+
 
 
 ) {
